@@ -1,0 +1,11 @@
+## Interface: 11302
+## Author: Vitaly A.
+## Title: Restock
+
+## Version: 0.1
+## Notes: Checks your inventory and restocks items you've specified when u are trading with vendors which has them.
+
+## DefaultState: Enabled
+## LoadOnDemand: 0
+
+init.lua
