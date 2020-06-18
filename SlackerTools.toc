@@ -3,7 +3,7 @@
 ## Title: Restock
 
 ## Version: 0.1
-## Notes: Checks your inventory and restocks items you've specified when u are trading with vendors which has them.
+## Notes: Checks your inventory and restocks items you've specified when u are trading with vendors which have them.
 
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
