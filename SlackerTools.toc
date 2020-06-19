@@ -1,11 +1,12 @@
 ## Interface: 11302
 ## Author: Vitaly A.
-## Title: Restock
+## Title: SlackerTools
 
 ## Version: 0.1
-## Notes: Checks your inventory and restocks items you've specified when u are trading with vendors which have them.
+## Notes: Slacker's little helper
 
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 
 init.lua
+restock.lua
