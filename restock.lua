@@ -10,14 +10,11 @@ end
 function Restock:GetVendorItems(restockItems)
     local items = {}
     for vendorItemIndex = 1, GetMerchantNumItems() do
-        local link = GetMerchantItemLink(vendorItemIndex)
-        if (link) then
-            for name, _ in pairs(restockItems) do
-                if (link:find(name)) then
-                    -- [Item Name] = VendorItemIndex
-                    items[name] = vendorItemIndex
-                end
-            end
+        local name=select(1, GetMerchantItemInfo(vendorItemIndex))
+
+        if (restockItems[name]) then
+            -- [Item Name] = VendorItemIndex
+            items[name] = vendorItemIndex
         end
     end
     return items
@@ -35,8 +32,10 @@ function Restock:GetPlayerItems(restockItems)
                 local count = select(2, GetContainerItemInfo(bag, slot))
 
                 if (restockItems[name]) then
+                    -- there could be same items in separate stacks
+                    local current = items[name] or 0
                     -- [Item Name] = HowManyPlayerAlreadyHas
-                    items[name] = count
+                    items[name] = current + count
                 end
             end
         end
@@ -47,6 +46,11 @@ end
 function Restock:OnEvent(event)
     local itemsToRestock = Restock:GetRestockItems()
     local vendorItems = Restock:GetVendorItems(itemsToRestock)
+
+    if (next(vendorItems) == nil) then
+        return
+    end
+
     local playerItems = Restock:GetPlayerItems(itemsToRestock)
 
     for itemName, desiredCount in pairs(itemsToRestock) do
